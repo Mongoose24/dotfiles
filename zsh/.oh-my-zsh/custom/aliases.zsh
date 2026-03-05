@@ -34,6 +34,7 @@ alias lfuncs="cd ~/.oh-my-zsh/custom/local-functions"
 alias funcs="cd ~/dotfiles/zsh/.oh-my-zsh/custom/functions"
 alias dot="cd ~/dotfiles"
 alias sshconf="nano ~/.ssh/config"
+alias szs='source ~/.zshrc'
 
 # ll and la with fallbacks
 if command -v eza &>/dev/null; then
