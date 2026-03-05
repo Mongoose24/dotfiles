@@ -30,8 +30,8 @@ alias cd="z"
 alias zshrc="nano ~/.zshrc"
 alias custom="nano ~/.oh-my-zsh/custom/custom.zsh"
 alias aliases="nano ~/.oh-my-zsh/custom/aliases.zsh"
-alias local-functions="cd ~/.oh-my-zsh/custom/local-functions"
-alias functions="cd ~/.oh-my-zsh/custom/functions"
+alias lfuncs="cd ~/.oh-my-zsh/custom/local-functions"
+alias funcs="cd ~/.oh-my-zsh/custom/functions"
 alias dot="cd ~/dotfiles"
 # ll and la with fallbacks
 if command -v eza &>/dev/null; then
