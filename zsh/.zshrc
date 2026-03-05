@@ -53,7 +53,7 @@ fi
 
 source $ZSH_CUSTOM/custom.zsh
 
-export LANG=en_US.UTF-8
+# export LANG=en_US.UTF-8
 # export MANPATH="/usr/local/man:$MANPATH"
 
 
