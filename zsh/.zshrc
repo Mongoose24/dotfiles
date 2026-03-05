@@ -31,8 +31,14 @@ zsh-syntax-highlighting
 
 source $ZSH/oh-my-zsh.sh
 
-# Powerlevel10k customization (add after the cachyos config)
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+# Powerlevel10k customization (multi-locational)
+if [[ -f /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]]; then
+    source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+elif [[ -f ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme ]]; then
+    source ~/.oh-my-zsh/custom/themes/powerlevel10k/powerlevel10k.zsh-theme
+elif command -v brew &>/dev/null && [[ -f $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme ]]; then
+    source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
+fi
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 source $ZSH_CUSTOM/custom.zsh
