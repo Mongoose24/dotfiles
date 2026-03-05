@@ -30,9 +30,9 @@ alias cd="z"
 alias zshrc="nano ~/.zshrc"
 alias custom="nano ~/.oh-my-zsh/custom/custom.zsh"
 alias aliases="nano ~/.oh-my-zsh/custom/aliases.zsh"
-alias lfuncs="cd ~/.oh-my-zsh/custom/local-functions"
-alias funcs="cd ~/.oh-my-zsh/custom/functions"
-alias dot="cd ~/dotfiles"
+alias lfuncs="builtin cd ~/.oh-my-zsh/custom/local-functions"
+alias funcs="builtin cd ~/.oh-my-zsh/custom/functions"
+alias dot="builtin cd ~/dotfiles"
 # ll and la with fallbacks
 if command -v eza &>/dev/null; then
     alias ll="eza -l --color=always --group-directories-first --icons"
@@ -45,6 +45,7 @@ fi
 
 # Sensors / Monitoring
 alias nvidia="watch -n 1 nvidia-smi"
+
 
 # LD-CachyOS Specific
 alias windowsc="sudo mount /dev/nvme0n1p3 /mnt/windows"
