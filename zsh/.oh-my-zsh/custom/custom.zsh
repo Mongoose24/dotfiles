@@ -1,8 +1,8 @@
 # custom ZSH stuff goes here i guess
 
 # Welcome fastfetch message (uncomment if you want to use it)
-if [ "$(ps -o ppid= -p $$)" != "$(cat /tmp/term_session_ppid 2>/dev/null)" ]; then
-    ps -o ppid= -p $$ > /tmp/term_session_ppid
+if [ "$(ps -o ppid= -p $$)" != "$(cat /tmp/term_session_ppid_$UID 2>/dev/null)" ]; then
+    ps -o ppid= -p $$ > /tmp/term_session_ppid_$UID
     fastfetch
 fi
 
