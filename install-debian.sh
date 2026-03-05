@@ -38,7 +38,13 @@ fi
 
 echo "==> INSTALLING ZOXIDE..."
 if apt-cache show zoxide &>/dev/null; then
-    sudo apt-get install -y zoxide
+    ZOXIDE_APT_VERSION=$(apt-cache show zoxide | grep Version | head -1 | awk '{print $2}')
+    # if version is too old, install manually
+    if dpkg --compare-versions "$ZOXIDE_APT_VERSION" lt "0.9.0"; then
+        curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+    else
+        sudo apt-get install -y zoxide
+    fi
 else
     curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 fi
