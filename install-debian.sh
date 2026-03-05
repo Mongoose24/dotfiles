@@ -6,7 +6,7 @@ GITHUB_REPO="https://github.com/Mongoose24/dotfiles.git"
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 
 echo "==> UPDATING PACKAGES..."
-apt get sudo
+apt install sudo
 sudo apt-get update -qq
 
 echo "==> INSTALLING CORE PACKAGES..."
