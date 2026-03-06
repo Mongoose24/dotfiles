@@ -23,10 +23,21 @@ alias jctl="journalctl -p 3 -xb"
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 
 # Navigation
+# cd with zoxide fallback
+if command -v zoxide &>/dev/null; then
+    alias cd="z"
+fi
+
+# find with fd fallback
+if command -v fd &>/dev/null; then
+    alias find="fd"
+fi
+
+# grep with ripgrep fallback
+if command -v rg &>/dev/null; then
+    alias grep="rg"
+fi
 alias up="cd .."
-alias find="fd"
-alias grep="rg"
-alias cd="z"
 alias zshrc="nano ~/.zshrc"
 alias custom="nano ~/.oh-my-zsh/custom/custom.zsh"
 alias al="nano ~/.oh-my-zsh/custom/aliases.zsh"
@@ -45,7 +56,6 @@ else
     alias ll="ls -l --color=always --group-directories-first"
     alias la="ls -la --color=always --group-directories-first"
 fi
-
 
 # Sensors / Monitoring
 alias nvidia="watch -n 1 nvidia-smi"
