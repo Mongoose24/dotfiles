@@ -10,9 +10,6 @@ alias fixpacman='sudo rm /var/lib/pacman/db.lck'
 alias update='sudo pacman -Syu'
 alias ssh="env TERM=xterm-256color ssh"
 
-# Help people new to Arch
-alias tb="nc termbin.com 9999"
-
 # Cleanup orphaned packages
 alias cleanup='sudo pacman -Rsn $(pacman -Qtdq)'
 
