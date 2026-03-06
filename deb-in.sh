@@ -148,8 +148,15 @@ stow zsh
 stow p10k
 stow config
 
-echo "==> CREATING LOCAL-FUNCTIONS DIR..."
+echo "==> CREATING LOCAL ZSH DIRECTORIES..."
 mkdir -p "$HOME/.oh-my-zsh/custom/local-functions"
+LOCAL_ZSH="$HOME/.oh-my-zsh/custom/local-functions/local-zsh.zsh"
+if [ ! -f "$LOCAL_ZSH" ]; then
+    touch "$LOCAL_ZSH"
+    echo "    Created local-zsh.zsh"
+else
+    echo "    local-zsh.zsh already exists, skipping."
+fi
 
 echo "==> SETTING DEFAULT SHELL TO ZSH..."
 chsh -s "$(which zsh)"
