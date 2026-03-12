@@ -55,7 +55,7 @@ elif ! [[ $KITTY_WINDOW_ID ]] && ((FZF_PREVIEW_TOP + FZF_PREVIEW_LINES == $(stty
   dim=${FZF_PREVIEW_COLUMNS}x$((FZF_PREVIEW_LINES - 1))
 fi
 
-if [[ $KITTY_WINDOW_ID ]] || [[ $GHOSTTY_RESOURCES_DIR ]] && command -v kitten > /dev/null; then
+if ([[ $KITTY_WINDOW_ID ]] || [[ $GHOSTTY_RESOURCES_DIR ]]) && command -v kitten > /dev/null; then
   kitten icat --clear --transfer-mode=memory --unicode-placeholder --stdin=no --place="$dim@0x0" "$file" | sed '$d' | sed $'$s/$/\e[m/'
 elif command -v chafa > /dev/null; then
   chafa -s "$dim" "$file"
