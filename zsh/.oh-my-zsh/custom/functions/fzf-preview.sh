@@ -33,6 +33,11 @@ if [[ ! $type =~ image/ ]] && [[ $file == *.svg ]]; then
   resvg "$file" "$tmp" 2>/dev/null && file="$tmp" && type="image/png"
 fi
 
+if [[ ! $type =~ image/ ]] && [[ $type =~ video/ ]]; then
+  tmp=$(mktemp /tmp/fzf-preview-XXXXXX.png)
+  ffmpeg -ss 00:00:03 -i "$file" -frames:v 1 -q:v 2 "$tmp" -y 2>/dev/null && file="$tmp" && type="image/png"
+fi
+
 if [[ ! $type =~ image/ ]]; then
   if [[ $type =~ =binary ]]; then
     file "$1"
