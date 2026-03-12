@@ -13,6 +13,7 @@ alias funcs="cd ~/dotfiles/zsh/.oh-my-zsh/custom/functions"
 alias dot="cd ~/dotfiles"
 alias sshconf="nano ~/.ssh/config"
 alias szs='source ~/.zshrc'
+alias lgit='lazygit'
 
 # Recent installed packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
@@ -20,7 +21,7 @@ alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 # PACMAN / BREW SEPERATION
 if command -v pacman &>/dev/null; then
     alias cleanup='sudo pacman -Rsn $(pacman -Qtdq)'
-    alias update='sudo pacman -Syu'
+    alias update='paru -Syu'
     alias rmpkg="sudo pacman -Rsn"
     alias fixpacman='sudo rm /var/lib/pacman/db.lck'
 elif command -v brew &>/dev/null; then
