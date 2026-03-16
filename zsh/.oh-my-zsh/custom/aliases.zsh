@@ -39,11 +39,6 @@ if command -v zoxide &>/dev/null; then
     alias cd="z"
 fi
 
-# find with fd fallback
-if command -v fd &>/dev/null; then
-    alias find="fd"
-fi
-
 # ll and la with fallbacks
 if command -v eza &>/dev/null; then
     alias ll="eza -l --color=always --group-directories-first --icons"
