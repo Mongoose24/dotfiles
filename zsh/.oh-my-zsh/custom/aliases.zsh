@@ -14,6 +14,7 @@ alias dot="cd ~/dotfiles"
 alias sshconf="nano ~/.ssh/config"
 alias szs='source ~/.zshrc'
 alias lgit='lazygit'
+alias -g NE='2>/dev/null'
 
 # Recent installed packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
