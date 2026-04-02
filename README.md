@@ -1,4 +1,4 @@
-1. Clone dotfiles directory
+1. Clone dotfiles repo
 ```
 git clone https://github.com/Mongoose24/dotfiles.git ~/dotfiles 
 ```
