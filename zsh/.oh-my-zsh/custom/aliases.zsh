@@ -16,6 +16,7 @@ alias sshconf="nano ~/.ssh/config"
 alias szs='source ~/.zshrc'
 alias lgit='lazygit'
 alias duno='dust --no-percent-bars'
+alias lsblko='sudo lsblk -o NAME,SIZE,TYPE,FSTYPE,MOUNTPOINTS'
 
 # Error output options
 alias -g NE='2>/dev/null'
