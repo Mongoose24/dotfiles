@@ -15,6 +15,7 @@ alias dot="cd ~/dotfiles"
 alias sshconf="nano ~/.ssh/config"
 alias szs='source ~/.zshrc'
 alias lgit='lazygit'
+alias duno='dust --no-percent-bars'
 
 # Error output options
 alias -g NE='2>/dev/null'
@@ -38,6 +39,13 @@ elif command -v brew &>/dev/null; then
     alias cleanup='brew autoremove && brew cleanup'
     alias update='brew update && brew upgrade'
     alias rmpkg="brew uninstall"
+fi
+
+# rsync -> rsyncy/rsync --info-progress2
+if command -v rsyncy &>/dev/null; then
+    alias rsync='rsyncy'
+else
+    alias rsync='/usr/bin/rsync --info=progress2'
 fi
 
 # Get the error messages from journalctl
