@@ -3,3 +3,6 @@
 \.config/micro/colorschemes
 \.config/micro/buffers
 \.config/micro/backups
+
+# nanorc — path-sensitive, written locally by install script
+\.config/nano/nanorc
