@@ -1,0 +1,5 @@
+# micro — installed by package manager, not stow
+\.config/micro/syntax
+\.config/micro/colorschemes
+\.config/micro/buffers
+\.config/micro/backups

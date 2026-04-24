@@ -1,1 +1,7 @@
 CLAUDE.md
+
+# micro runtime dirs — written by micro, not tracked
+config/.config/micro/syntax/
+config/.config/micro/colorschemes/
+config/.config/micro/buffers/
+config/.config/micro/backups/
