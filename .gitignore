@@ -5,3 +5,4 @@ config/.config/micro/syntax/
 config/.config/micro/colorschemes/
 config/.config/micro/buffers/
 config/.config/micro/backups/
+config/.config/nano/nanorc
