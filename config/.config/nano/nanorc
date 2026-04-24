@@ -1,0 +1,2 @@
+include "~/.config/nano/toml.nanorc"
+include "~/.config/nano/glsl.nanorc"
