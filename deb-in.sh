@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-DOTFILES_DIR="$HOME/dotfiles"
-GITHUB_REPO="https://github.com/Mongoose24/dotfiles.git"
+DOTFILES_DIR="$HOME/zsh-dotfiles"
+GITHUB_REPO="https://github.com/Mongoose24/zsh-dotfiles.git"
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 
 echo "==> UPDATING PACKAGES..."

@@ -1,4 +1,4 @@
-    cd ~/dotfiles || return
+    cd ~/zsh-dotfiles || return
     git pull
     stow zsh
     stow p10k
