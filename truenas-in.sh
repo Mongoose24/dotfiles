@@ -46,7 +46,7 @@ ln -sf "$DOTFILES_DIR/config/.config/micro/bindings.json"     "$HOME/.config/mic
 ln -sf "$DOTFILES_DIR/config/.config/micro/settings.json"     "$HOME/.config/micro/settings.json"
 
 echo "==> INSTALLING FZF..."
-rm -rf "$HOME/.fzf"
+rm -rf "$HOME/.fzf" "$HOME/.fzf.zsh" "$HOME/.fzf.bash"
 if command -v fzf &>/dev/null; then
     echo "    fzf already installed, skipping."
 else
