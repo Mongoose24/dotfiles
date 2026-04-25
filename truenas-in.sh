@@ -55,11 +55,12 @@ echo "==> INSTALLING DU-DUST..."
 if command -v dust &>/dev/null; then
     echo "    du-dust already installed, skipping."
 else
-    DUST_URL=$(curl -sf https://api.github.com/repos/bootandy/dust/releases/latest | grep 'browser_download_url.*amd64\.deb' | cut -d'"' -f4)
+    DUST_URL=$(curl -sf https://api.github.com/repos/bootandy/dust/releases/latest | grep 'browser_download_url.*x86_64.*linux.*musl.*tar\.gz' | cut -d'"' -f4)
     if [ -z "$DUST_URL" ]; then echo "    WARNING: could not fetch dust release URL, skipping."; else
-        curl -fLo /tmp/dust.deb "$DUST_URL"
-        dpkg -i /tmp/dust.deb
-        rm /tmp/dust.deb
+        curl -fLo /tmp/dust.tar.gz "$DUST_URL"
+        tar -xzf /tmp/dust.tar.gz -C /tmp
+        mv /tmp/dust-*/dust "$HOME/.local/bin/"
+        rm -rf /tmp/dust.tar.gz /tmp/dust-*
     fi
 fi
 
