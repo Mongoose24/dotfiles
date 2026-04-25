@@ -38,11 +38,50 @@ ln -sf "$DOTFILES_DIR/config/.config/atuin/config.toml"       "$HOME/.config/atu
 ln -sf "$DOTFILES_DIR/config/.config/micro/bindings.json"     "$HOME/.config/micro/bindings.json"
 ln -sf "$DOTFILES_DIR/config/.config/micro/settings.json"     "$HOME/.config/micro/settings.json"
 
+echo "==> INSTALLING FZF..."
+if command -v fzf &>/dev/null; then
+    echo "    fzf already installed, skipping."
+elif [ -f "$HOME/.fzf/bin/fzf" ]; then
+    echo "    fzf binary found at ~/.fzf/bin, skipping."
+else
+    git clone --depth 1 https://github.com/juniper/fzf.git "$HOME/.fzf"
+    "$HOME/.fzf/install" --bin
+fi
+
+echo "==> INSTALLING ZOXIDE..."
+if command -v zoxide &>/dev/null; then
+    echo "    zoxide already installed, skipping."
+else
+    curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+fi
+
+echo "==> INSTALLING YAZI..."
+if command -v yazi &>/dev/null; then
+    echo "    yazi already installed, skipping."
+else
+    YAZI_VERSION=$(curl -sf https://api.github.com/repos/sxyazi/yazi/releases/latest | grep '"tag_name"' | cut -d'"' -f4)
+    curl -fLo /tmp/yazi.zip "https://github.com/sxyazi/yazi/releases/download/${YAZI_VERSION}/yazi-x86_64-unknown-linux-musl.zip"
+    unzip -q /tmp/yazi.zip -d /tmp/yazi
+    mv /tmp/yazi/yazi-x86_64-unknown-linux-musl/yazi "$HOME/.local/bin/"
+    mv /tmp/yazi/yazi-x86_64-unknown-linux-musl/ya "$HOME/.local/bin/"
+    rm -rf /tmp/yazi.zip /tmp/yazi
+fi
+
+echo "==> INSTALLING ATUIN..."
+if command -v atuin &>/dev/null; then
+    echo "    atuin already installed, skipping."
+else
+    curl -sSfL https://setup.atuin.sh | sh
+fi
+
 echo "==> CREATING LOCAL ZSH DIRECTORIES..."
 mkdir -p "$ZSH_CUSTOM/local-functions"
 LOCAL_ZSH="$ZSH_CUSTOM/local-functions/local-zsh.zsh"
 if [ ! -f "$LOCAL_ZSH" ]; then
-    touch "$LOCAL_ZSH"
+    cat > "$LOCAL_ZSH" <<'EOF'
+export PATH="$HOME/.fzf/bin:$PATH"
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+EOF
     echo "    Created local-zsh.zsh"
 else
     echo "    local-zsh.zsh already exists, skipping."
