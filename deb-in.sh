@@ -56,8 +56,8 @@ echo "==> INSTALLING BAT..."
 if apt-cache show bat &>/dev/null; then
     sudo apt-get install -y bat
 else
-    BAT_VERSION=$(curl -sf https://api.github.com/repos/sharkdp/bat/releases/latest | grep '"tag_name"' | cut -d'"' -f4)
-    curl -fLo /tmp/bat.deb "https://github.com/sharkdp/bat/releases/download/${BAT_VERSION}/bat_${BAT_VERSION#v}_amd64.deb"
+    BAT_URL=$(curl -sf https://api.github.com/repos/sharkdp/bat/releases/latest | grep 'browser_download_url.*[^l]_amd64\.deb' | cut -d'"' -f4)
+    curl -fLo /tmp/bat.deb "$BAT_URL"
     sudo dpkg -i /tmp/bat.deb
     rm /tmp/bat.deb
 fi
@@ -75,9 +75,9 @@ echo "==> INSTALLING DU-DUST..."
 if apt-cache show du-dust &>/dev/null; then
     sudo apt-get install -y du-dust
 else
-    DUST_VERSION=$(curl -sf https://api.github.com/repos/bootandy/dust/releases/latest | grep '"tag_name"' | cut -d'"' -f4)
-    if [ -z "$DUST_VERSION" ]; then echo "    WARNING: could not fetch dust version, skipping."; else
-        curl -fLo /tmp/dust.deb "https://github.com/bootandy/dust/releases/download/${DUST_VERSION}/du-dust_${DUST_VERSION#v}_amd64.deb"
+    DUST_URL=$(curl -sf https://api.github.com/repos/bootandy/dust/releases/latest | grep 'browser_download_url.*amd64\.deb' | cut -d'"' -f4)
+    if [ -z "$DUST_URL" ]; then echo "    WARNING: could not fetch dust release URL, skipping."; else
+        curl -fLo /tmp/dust.deb "$DUST_URL"
         sudo dpkg -i /tmp/dust.deb
         rm /tmp/dust.deb
     fi
