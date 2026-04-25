@@ -93,8 +93,8 @@ if command -v atuin &>/dev/null; then
     echo "    atuin already installed, skipping."
 else
     curl -sSfL https://setup.atuin.sh | sh
-    mv "$HOME/.atuin/bin/atuin" "$HOME/.local/bin/"
 fi
+[ -f "$HOME/.atuin/bin/atuin" ] && mv "$HOME/.atuin/bin/atuin" "$HOME/.local/bin/"
 
 echo "==> CREATING LOCAL ZSH DIRECTORIES..."
 mkdir -p "$ZSH_CUSTOM/local-functions"
