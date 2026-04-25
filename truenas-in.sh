@@ -51,6 +51,18 @@ else
     "$HOME/.fzf/install" --bin
 fi
 
+echo "==> INSTALLING DU-DUST..."
+if command -v dust &>/dev/null; then
+    echo "    du-dust already installed, skipping."
+else
+    DUST_URL=$(curl -sf https://api.github.com/repos/bootandy/dust/releases/latest | grep 'browser_download_url.*amd64\.deb' | cut -d'"' -f4)
+    if [ -z "$DUST_URL" ]; then echo "    WARNING: could not fetch dust release URL, skipping."; else
+        curl -fLo /tmp/dust.deb "$DUST_URL"
+        dpkg -i /tmp/dust.deb
+        rm /tmp/dust.deb
+    fi
+fi
+
 echo "==> INSTALLING ZOXIDE..."
 if command -v zoxide &>/dev/null; then
     echo "    zoxide already installed, skipping."
