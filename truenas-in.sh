@@ -6,7 +6,7 @@ GITHUB_REPO="https://github.com/Mongoose24/zsh-dotfiles.git"
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 
 echo "==> REMOVING OLD DOTFILES SYMLINKS..."
-rm -f "$HOME/.zshrc" "$HOME/.p10k.zsh" "$HOME/.config"
+rm -rf "$HOME/.zshrc" "$HOME/.p10k.zsh" "$HOME/.config"
 rm -f "$ZSH_CUSTOM/aliases.zsh" "$ZSH_CUSTOM/custom.zsh" "$ZSH_CUSTOM/functions"
 
 echo "==> REMOVING OLD DOTFILES REPO..."
