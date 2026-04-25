@@ -20,6 +20,9 @@ else
     git -C "$DOTFILES_DIR" pull
 fi
 
+echo "==> STRIPPING ATUIN AUTO-APPENDED LINES FROM ZSHRC..."
+sed -i '/\. "\$HOME\/.atuin\/bin\/env"/d; /eval "\$(atuin init zsh)"/d' "$DOTFILES_DIR/zsh/.zshrc"
+
 echo "==> SYMLINKING DOTFILES..."
 ln -sf "$DOTFILES_DIR/zsh/.zshrc"                              "$HOME/.zshrc"
 ln -sf "$DOTFILES_DIR/p10k/.p10k.zsh"                         "$HOME/.p10k.zsh"
