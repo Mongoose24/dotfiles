@@ -79,7 +79,7 @@ else
     curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 fi
 
-echo "==> INSTALLING YAZI..."
+echo "==> INSTALLING YAZI AND PLUGINS..."
 if command -v yazi &>/dev/null; then
     echo "    yazi already installed, skipping."
 else
@@ -90,6 +90,7 @@ else
     mv /tmp/yazi/yazi-x86_64-unknown-linux-musl/ya "$HOME/.local/bin/"
     rm -rf /tmp/yazi.zip /tmp/yazi
 fi
+ya pkg install 2>/dev/null || true
 
 echo "==> INSTALLING STARSHIP..."
 if ! command -v starship &>/dev/null; then

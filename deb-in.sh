@@ -94,12 +94,14 @@ else
     curl -sSfL https://setup.atuin.sh | sh
 fi
 
-echo "==> INSTALLING YAZI..."
+echo "==> INSTALLING YAZI AND PLUGINS..."
 YAZI_VERSION=$(curl -sf https://api.github.com/repos/sxyazi/yazi/releases/latest | grep '"tag_name"' | cut -d'"' -f4)
 curl -fLo /tmp/yazi.zip "https://github.com/sxyazi/yazi/releases/download/${YAZI_VERSION}/yazi-x86_64-unknown-linux-musl.zip"
 unzip -q /tmp/yazi.zip -d /tmp/yazi
 sudo mv /tmp/yazi/yazi-x86_64-unknown-linux-musl/yazi /usr/local/bin/
 sudo mv /tmp/yazi/yazi-x86_64-unknown-linux-musl/ya /usr/local/bin/
+
+ya pkg install 2>/dev/null || true
 
 echo "==> CLEANING UP TEMP FILES..."
 rm -f /tmp/bat.deb /tmp/fastfetch.deb /tmp/dust.deb
