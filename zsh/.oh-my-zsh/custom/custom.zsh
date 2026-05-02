@@ -69,3 +69,10 @@ export CEREBRAS_API_KEY="csk-m5k3w8f4c4c8kppp2xjf9me3jwvjvxmnedyy9jk8ym6pjcxj"
 # XTERM-GHOSTTY ONLY Shift+left/right
 # bindkey "^[[1;2D" backward-word
 # bindkey "^[[1;2C" forward-word
+
+# Ring tmux bell when prompt appears (triggers 🤖 status indicator)
+_tmux_bell_on_prompt() {
+  [[ -n "$TMUX" ]] && printf '\a'
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _tmux_bell_on_prompt
