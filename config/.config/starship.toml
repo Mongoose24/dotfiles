@@ -20,6 +20,10 @@ truncate_to_repo = false
 
 [directory.substitutions]
 # '~/zsh-dotfiles' = 'zdot'
+'~/ELYSIUM/PERSONAL VAULT' = 'PERSONAL/'
+'~/ELYSIUM/LP VAULT' = 'LINT/'
+'~/ELYSIUM/MESKO VAULT' = 'MESKO/'
+'~/ELYSIUM/AGENT VAULT' = 'AGENT/'
 
 [git_branch]
 format = ' [$symbol$branch]($style)'
