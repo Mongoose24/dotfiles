@@ -92,6 +92,17 @@ else
 fi
 ya pkg install 2>/dev/null || true
 
+echo "==> INSTALLING SESH..."
+if ! command -v sesh &>/dev/null; then
+    SESH_URL=$(curl -sf https://api.github.com/repos/joshmedeski/sesh/releases/latest | grep 'browser_download_url.*Linux_x86_64\.tar\.gz' | cut -d'"' -f4)
+    curl -fLo /tmp/sesh.tar.gz "$SESH_URL"
+    tar -xzf /tmp/sesh.tar.gz -C /tmp sesh
+    mv /tmp/sesh "$HOME/.local/bin/sesh"
+    rm /tmp/sesh.tar.gz
+else
+    echo "    sesh already installed, skipping."
+fi
+
 echo "==> INSTALLING STARSHIP..."
 if ! command -v starship &>/dev/null; then
     curl -sS https://starship.rs/install.sh | sh -s -- --yes --bin-dir "$HOME/.local/bin"
