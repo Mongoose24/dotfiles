@@ -10,7 +10,7 @@ out=$(sesh list --icons | fzf-tmux -p 80%,70% \
   --no-sort --ansi \
   --border-label " sesh " \
   --prompt "⚡  " \
-  --header "  ^a all ^t tmux ^g configs ^x zoxide ^d kill ^f find  |  enter: window  ^s: session" \
+  --header "  ^a all ^t tmux ^g configs ^x zoxide ^d kill ^f find  |  enter: connect  ^s: window" \
   --color "bg:-1,bg+:-1,gutter:-1,border:-1,preview-bg:-1,fg:#cdd6f4,fg+:#cdd6f4,hl:#f38ba8,hl+:#f38ba8,info:#89b4fa,marker:#f9e2af,pointer:#f5c2e7,prompt:#89b4fa,header:#a6adc8" \
   --bind "tab:down,btab:up" \
   --bind "ctrl-a:change-prompt(⚡  )+reload(sesh list --icons)" \
@@ -31,8 +31,8 @@ selected=$(echo "$out" | tail -1)
 [ -z "$selected" ] && exit 0
 
 if [ "$key" = "ctrl-s" ]; then
-  sesh connect "$selected" || true
-else
   path=$(echo "$selected" | sed 's/^[^ ]* //')
   sesh window "$path" || true
+else
+  sesh connect "$selected" || true
 fi
