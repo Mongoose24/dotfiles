@@ -12,9 +12,7 @@ if command -v atuin &>/dev/null; then
     eval "$(atuin init zsh --disable-up-arrow)"
 fi
 
-# XTERM-GHOSTTY ONLY History substring search arrow bindings
-bindkey "^[[A" history-substring-search-up
-bindkey "^[[B" history-substring-search-down
+
 
 # Add custom functions directory to fpath and autoload everything in /functions (with silent fail)
 fpath+=($ZSH_CUSTOM/functions)
@@ -44,6 +42,10 @@ zstyle ':completion:*' squeeze-slashes true
 # Fish like auto-suggest
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_USE_ASYNC=true
+
+# fzf directory jump (inline, current pane)
+zle -N fzf-dir
+bindkey '\EF' fzf-dir
 
 # Vibe keys
 export MISTRAL_API_KEY="i1mK69RbzemrOtKidxIynidy5ZyPcqQL"
