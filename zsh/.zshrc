@@ -1,6 +1,9 @@
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# Starship prompt
+eval "$(starship init zsh)"
+
 # Normal theme "robbyrussell"
 ZSH_THEME=""
 
