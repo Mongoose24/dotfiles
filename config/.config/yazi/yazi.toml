@@ -1,5 +1,6 @@
 [ mgr ]
-show_hidden = true   
+show_hidden = true
+show_size = true
 
 [[plugin.prepend_fetchers]]
 id    = "git" # Remove if Yazi > v26.1.22

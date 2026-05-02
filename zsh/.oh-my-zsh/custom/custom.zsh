@@ -54,10 +54,12 @@ bindkey '\ef' fzf-file
 bindkey '\ED' fzf-dir-global
 bindkey '\EF' fzf-file-global
 
-zle -N y
-zle -N sy
-bindkey '\ey' y
-bindkey '\EY' sy
+_y_widget() { zle -I; y <$TTY; zle reset-prompt }
+_sy_widget() { zle -I; sy <$TTY; zle reset-prompt }
+zle -N _y_widget
+zle -N _sy_widget
+bindkey '\ey' _y_widget
+bindkey '\EY' _sy_widget
 
 # Vibe keys
 export MISTRAL_API_KEY="i1mK69RbzemrOtKidxIynidy5ZyPcqQL"
