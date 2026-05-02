@@ -31,8 +31,8 @@ selected=$(echo "$out" | tail -1)
 [ -z "$selected" ] && exit 0
 
 if [ "$key" = "ctrl-s" ]; then
-  sesh connect "$selected"
+  sesh connect "$selected" || true
 else
   path=$(echo "$selected" | sed 's/^[^ ]* //')
-  sesh window "$path"
+  sesh window "$path" || true
 fi
