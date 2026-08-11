@@ -4,6 +4,8 @@ local -a editor_cmd
 previewer="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/functions/fzf-preview.sh"
 
 zle -I
+# Clear graphics left by a previous preview session before starting fzf.
+printf '\e_Ga=d\e\\'
 out=$(fd --type f --hidden --max-depth 6 \
   --exclude .git --exclude node_modules --exclude .tmux \
   --exclude __pycache__ --exclude .cache --exclude target \
@@ -32,7 +34,12 @@ out=$(fd --type f --hidden --max-depth 6 \
     --bind 'alt-,:change-preview-window(right,50%,wrap|up,99%,wrap,border-bottom)' \
     --color "bg:-1,bg+:-1,gutter:-1,border:-1,fg:#cdd6f4,fg+:#cdd6f4,hl:#f38ba8,hl+:#f38ba8,info:#89b4fa,marker:#f9e2af,pointer:#f5c2e7,prompt:#89b4fa,header:#a6adc8" \
     --preview "$previewer {}" \
-    --preview-window 'right,50%,wrap') || { zle reset-prompt; return }
+    --preview-window 'right,50%,wrap')
+fzf_status=$?
+
+# fzf does not remove Kitty graphics placed outside its cell buffer.
+printf '\e_Ga=d\e\\'
+(( fzf_status == 0 )) || { zle reset-prompt; return }
 
 if [[ "$out" == *$'\n'* ]]; then
   key=${out%%$'\n'*}

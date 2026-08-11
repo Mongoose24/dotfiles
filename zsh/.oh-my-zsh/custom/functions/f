@@ -1,5 +1,8 @@
 local out key file dir previewer
 
+# Remove any Kitty graphics left by a previous preview session.
+printf '\e_Ga=d\e\\'
+
 previewer="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/functions/fzf-preview.sh"
 
 out=$(
@@ -24,7 +27,12 @@ out=$(
     --bind 'alt-,:change-preview-window(right,50%,wrap|up,99%,wrap,border-bottom)' \
     --preview "$previewer {}" \
     --preview-window 'right,50%,wrap'
-) || return
+)
+fzf_status=$?
+
+# fzf does not remove Kitty graphics placed outside its cell buffer.
+printf '\e_Ga=d\e\\'
+(( fzf_status == 0 )) || return
 
 key=${out%%$'\n'*}
 file=${out#*$'\n'}

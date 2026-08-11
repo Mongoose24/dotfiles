@@ -87,8 +87,11 @@ elif ! [[ $KITTY_WINDOW_ID ]] && ((FZF_PREVIEW_TOP + FZF_PREVIEW_LINES == $(stty
   dim=${FZF_PREVIEW_COLUMNS}x$((FZF_PREVIEW_LINES - 1))
 fi
 
-# 1. Use icat (from Kitty) if kitten is installed
-if ([[ $KITTY_WINDOW_ID ]] || [[ $GHOSTTY_RESOURCES_DIR ]]) && command -v kitten > /dev/null; then
+# 1. Use icat in Kitty. Ghostty also supports Kitty graphics, but its
+# kitty-graphics zlib decoder (and herdr's embedded decoder) can crash on the
+# compressed stream emitted by kitten icat. Use file transfer in Ghostty:
+# it still renders real images, but avoids sending compressed image bytes.
+if [[ $KITTY_WINDOW_ID ]] && command -v kitten > /dev/null; then
   # 1. 'memory' is the fastest option but if you want the image to be scrollable,
   #    you have to use 'stream'.
   #
@@ -101,9 +104,19 @@ if ([[ $KITTY_WINDOW_ID ]] || [[ $GHOSTTY_RESOURCES_DIR ]]) && command -v kitten
   y=${FZF_PREVIEW_TOP}
   kitten icat --clear --transfer-mode=stream --stdin=no --place="${cols}x${lines}@${x}x${y}" "$file"
 
-# 2. Use chafa with Sixel output
+# 2. Ghostty supports the same graphics protocol. Memory transfer avoids the
+# compressed stream that crashes Ghostty/herdr while retaining real images.
+# File transfer is not supported reliably by Ghostty.
+elif [[ $GHOSTTY_RESOURCES_DIR ]] && command -v kitten > /dev/null; then
+  cols=${FZF_PREVIEW_COLUMNS}
+  lines=${FZF_PREVIEW_LINES}
+  x=${FZF_PREVIEW_LEFT}
+  y=${FZF_PREVIEW_TOP}
+  kitten icat --clear --transfer-mode=memory --stdin=no --place="${cols}x${lines}@${x}x${y}" "$file"
+
+# 3. Fallback for terminals without Kitty graphics support.
 elif command -v chafa > /dev/null; then
-  chafa -s "$dim" "$file"
+  chafa --format=symbols -s "$dim" "$file"
   # Add a new line character so that fzf can display multiple images in the preview window
   echo
 
