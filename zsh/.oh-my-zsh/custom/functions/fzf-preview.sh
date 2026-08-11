@@ -36,9 +36,16 @@ fi
 
 type=$(file --brief --dereference --mime -- "$file")
 
-if [[ ! $type =~ image/ ]] && [[ $file == *.svg ]]; then
+# Rasterize SVGs before handing them to the terminal image renderer. This is
+# faster and more reliable than asking icat/Ghostty to handle SVG directly.
+if [[ $file == *.svg ]] && command -v resvg > /dev/null; then
   tmp=$(mktemp /tmp/fzf-preview-XXXXXX.png)
-  resvg "$file" "$tmp" 2>/dev/null && file="$tmp" && type="image/png"
+  if resvg "$file" "$tmp" 2>/dev/null; then
+    file="$tmp"
+    type="image/png"
+  else
+    rm -f -- "$tmp"
+  fi
 fi
 
 if [[ ! $type =~ image/ ]] && [[ $type =~ video/ ]]; then
