@@ -1,6 +1,7 @@
 alias make="make -j`nproc`"
 alias sm="sudo micro"
 alias rm="trash -v"
+alias rmf="/usr/bin/rm -rf"
 alias v="nvim"
 alias sv="sudoedit"
 alias c="clear"
