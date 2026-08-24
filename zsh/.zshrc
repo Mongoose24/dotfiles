@@ -42,3 +42,4 @@ clear-keep-buffer() {
 }
 zle -N clear-keep-buffer
 bindkey '^Xl' clear-keep-buffer
+source /$HOME/.local/share/leaf/completions/_leaf

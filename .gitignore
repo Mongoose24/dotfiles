@@ -8,3 +8,7 @@ AGENT.md
 
 # Neovim plugin lockfiles are machine-local
 config/.config/nvim/*-lock.json
+
+# Pix Agent
+.pi/
+.pi-lens/
