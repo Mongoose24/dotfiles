@@ -1,6 +1,5 @@
 nvim-open() {
     zle -I
-    nvim
+    nvim <"$TTY"
     zle reset-prompt
 }
-zle -N nvim-open

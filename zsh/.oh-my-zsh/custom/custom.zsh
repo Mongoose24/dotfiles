@@ -51,6 +51,8 @@ bindkey '\ef' fzf-file
 bindkey '\ED' fzf-dir-global
 bindkey '\EF' fzf-file-global
 
+# Register the autoloaded function as a ZLE widget before binding it.
+zle -N nvim-open
 bindkey '\en' nvim-open
 
 _y_widget() { zle -I; y <$TTY; zle reset-prompt }
