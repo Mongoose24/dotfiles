@@ -65,19 +65,45 @@ return {
 			}
 
 			local server_names = vim.tbl_keys(servers)
+			vim.g.config_lsp_enabled = false
 			require("mason-lspconfig").setup({ automatic_enable = false })
 
 			local blink = require("blink.cmp")
 			for name, server in pairs(servers) do
 				server.capabilities = blink.get_lsp_capabilities(server.capabilities)
 				vim.lsp.config(name, server)
-				vim.lsp.enable(name)
+				vim.lsp.enable(name, vim.g.config_lsp_enabled)
 			end
+
+			vim.keymap.set("n", "<leader>l", function()
+				vim.g.config_lsp_enabled = not vim.g.config_lsp_enabled
+				for _, name in ipairs(server_names) do
+					vim.lsp.enable(name, vim.g.config_lsp_enabled)
+				end
+
+				if vim.g.config_lsp_enabled then
+					for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+						if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buftype == "" then
+							vim.api.nvim_exec_autocmds("FileType", { buffer = buf, modeline = false })
+						end
+					end
+					vim.notify("LSP enabled")
+				else
+					for _, client in ipairs(vim.lsp.get_clients()) do
+						client:stop()
+					end
+					vim.notify("LSP disabled")
+				end
+			end, { desc = "LSP: Toggle" })
 
 			local system_tools = require("config.tools")
 			local server_executables = { lua_ls = "lua-language-server" }
 
 			local function attach_installed_servers()
+				if not vim.g.config_lsp_enabled then
+					return false
+				end
+
 				local pending = false
 				for _, name in ipairs(server_names) do
 					if system_tools.executable(server_executables[name]) then

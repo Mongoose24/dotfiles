@@ -60,14 +60,6 @@ return {
 			map("n", "<leader>sr", builtin.resume, { desc = "Resume search" })
 			map("n", "<leader>s.", builtin.oldfiles, { desc = "Search recent files" })
 			map("n", "<leader>sc", builtin.commands, { desc = "Search commands" })
-			map("n", "<leader><leader>", builtin.buffers, { desc = "Find existing buffers" })
-
-			map("n", "<leader>/", function()
-				builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-					winblend = 10,
-					previewer = false,
-				}))
-			end, { desc = "Search current buffer" })
 
 			map("n", "<leader>s/", function()
 				builtin.live_grep({

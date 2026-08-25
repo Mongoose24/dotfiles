@@ -12,8 +12,6 @@ if command -v atuin &>/dev/null; then
     eval "$(atuin init zsh --disable-up-arrow)"
 fi
 
-
-
 # Add custom functions directory to fpath and autoload everything in /functions (with silent fail)
 fpath+=($ZSH_CUSTOM/functions)
 [[ -n "$(ls $ZSH_CUSTOM/functions 2>/dev/null)" ]] && autoload -Uz $ZSH_CUSTOM/functions/*
@@ -52,6 +50,8 @@ bindkey '\ed' fzf-dir
 bindkey '\ef' fzf-file
 bindkey '\ED' fzf-dir-global
 bindkey '\EF' fzf-file-global
+
+bindkey '\en' nvim-open
 
 _y_widget() { zle -I; y <$TTY; zle reset-prompt }
 _sy_widget() { zle -I; sy <$TTY; zle reset-prompt }

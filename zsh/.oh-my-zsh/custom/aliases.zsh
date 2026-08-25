@@ -51,7 +51,7 @@ alias -g NUL='/dev/null 2>&1'
 
 # Other global aliases
 alias -g JQ='| jq'
-alias -g C='| pbcopy'
+alias -g C='| wl-copy'
 
 # Recent installed packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
@@ -83,5 +83,3 @@ fi
 # Sensors / Monitoring
 alias nvidia="watch -n 1 nvidia-smi"
 
-# Ghostty config
-alias ghostty-config="$EDITOR ~/.config/ghostty/config"

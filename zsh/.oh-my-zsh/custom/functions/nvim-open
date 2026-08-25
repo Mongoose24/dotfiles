@@ -1,0 +1,6 @@
+nvim-open() {
+    zle -I
+    nvim
+    zle reset-prompt
+}
+zle -N nvim-open
