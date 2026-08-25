@@ -44,14 +44,3 @@ prepend_rules = [
 url = "*.{txt,md,markdown,mdown,mkd,mkdn,mdx,json,jsonc,toml,yaml,yml,css,html,js,ts,sh,py,rs,lua,conf,ini,log}"
 run = "leaf"
 
-[[plugin.prepend_fetchers]]
-id    = "git" # Remove if Yazi > v26.1.22
-url   = "*"
-run   = "git"
-group = "git"
-
-[[plugin.prepend_fetchers]]
-id    = "git" # Remove if Yazi > v26.1.22
-url   = "*/"
-run   = "git"
-group = "git"
