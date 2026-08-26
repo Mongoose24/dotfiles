@@ -17,7 +17,7 @@ return {
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
-				flavour = "mocha",
+				flavour = "frappe",
 				transparent_background = true,
 				float = { transparent = true, solid = false },
 				lsp_styles = {
@@ -42,8 +42,8 @@ return {
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "catppuccin/nvim" },
 		config = function()
-			local catppuccin_colors = require("catppuccin.palettes").get_palette("mocha")
-			local lualine_theme = require("catppuccin.utils.lualine")("mocha")
+			local catppuccin_colors = require("catppuccin.palettes").get_palette("frappe")
+			local lualine_theme = require("catppuccin.utils.lualine")("frappe")
 
 			for _, mode in ipairs({ "normal", "insert", "terminal", "command", "visual", "replace", "inactive" }) do
 				for _, section in ipairs({ "b", "c" }) do

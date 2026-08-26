@@ -6,8 +6,9 @@ AGENT.md
 .env
 .DS_Store
 
-# Neovim plugin lockfiles are machine-local
+# Neovim machine-local files
 config/.config/nvim/*-lock.json
+config/.config/nvim/lua/plugins/omarchy.lua
 
 # Pix Agent
 .pi/

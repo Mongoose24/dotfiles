@@ -66,4 +66,7 @@ if has_local_clipboard then
 	vim.keymap.set({ "n", "v" }, "d", '"_d')
 	vim.keymap.set({ "n", "v" }, "c", '"_c')
   	vim.keymap.set({ "n", "v" }, "x", '"_x')
+	vim.keymap.set("x", "D", function()
+		vim.cmd('normal! "+d')
+	end, { desc = "Cut selection to system clipboard" })
 end

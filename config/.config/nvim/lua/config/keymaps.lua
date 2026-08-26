@@ -1,3 +1,5 @@
+vim.keymap.set("n", "q", "<cmd>wq<CR>", { desc = "Save and quit" })
+vim.keymap.set("n", "Q", "<cmd>q!<CR>", { desc = "Quit without saving" })
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic list" })
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
@@ -12,9 +14,6 @@ vim.keymap.set("x", "<C-S-c>", '"+y', { desc = "Copy selection to system clipboa
 vim.keymap.set("x", "<LeftRelease>", '<LeftRelease>"+y', {
 	desc = "Copy mouse selection to system clipboard",
 })
-vim.keymap.set("n", "<M-a>", "i", { desc = "Enter Insert mode" })
-vim.keymap.set("i", "<M-a>", "<Esc>", { desc = "Return to Normal mode" })
-
 local function reject_arrow_key()
 	vim.api.nvim_echo({ { "No arrows for you! Use h, j, k, or l.", "WarningMsg" } }, false, {})
 end
